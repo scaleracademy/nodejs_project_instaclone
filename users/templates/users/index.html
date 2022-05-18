@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        Hello world! <br/>
+
+        Number of users in your db are {{ count_of_users }} <br/>
+
+        {% if count_of_users < 10 %}
+            <p>You need more people to sign up....</p>
+        {% else %}
+            <p>Great going!</p>
+        {% endif %}
+
+        <ul>
+            {% for user in users %}
+                <li> {{ user.name }} -- {{ user.email }} - {{ user.created_on }}</li>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+.idea/
+celery.logs
+db.sqlite3
+product_static_assets

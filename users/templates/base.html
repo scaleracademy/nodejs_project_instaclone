@@ -1,0 +1,32 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>
+    {% block title %}
+       Instaclone
+    {% endblock %}
+  </title>
+  <link rel="shortcut icon" type="image/png" href="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png">
+  <script src="https://kit.fontawesome.com/fb8f1c0305.js" crossorigin="anonymous"></script>
+  </head>
+<body>
+  <div style="height: 40px; background-color: lightblue; text-align:center;">
+    This is the updated header
+  </div>
+
+  <main>
+
+    {% block content %}
+
+    {% endblock %}
+
+  </main>
+
+  <div style="height: 40px; position: absolute; bottom:0; width:100%;
+            background-color: lightyellow; text-align:center;">
+      This is the updated footer
+  </div>
+</body>
+</html>

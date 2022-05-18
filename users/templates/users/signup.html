@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'signup.css' %}">
+
+<div id="wrapper">
+
+  <div class="main-content">
+    <div class="header">
+      <img src="https://i.imgur.com/zqpwkLQ.png" />
+    </div>
+    <div class="l-part">
+        {% if message %}
+          {{ message }}
+        {% endif %}
+
+
+        <form action="/users/signup/" method="post">
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+            <div class="label">{{ field.label }}</div>
+            <div class="errors">{{ field.errors }}</div>
+            {{ field }}
+          {% endfor %}
+
+          <input type="submit" value="Submit" class="btn" />
+
+        </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
