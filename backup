@@ -1,0 +1,18 @@
+  celery:
+    build: .
+    command: celery -A instaclone worker -l info
+    volumes:
+      - ./instaclone:/usr/src/instaclone
+    depends_on:
+      - db
+      - redis
+      - web
+
+
+
+      volumes:
+        - ./instaclone:/usr/src/instaclone
+
+
+volumes:
+  postgres_data:

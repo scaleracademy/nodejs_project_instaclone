@@ -20,3 +20,21 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+  # web:
+  #   build: ./instaclone
+  #   command: python manage.py runserver 0.0.0.0:8000
+  #   volumes:
+  #     - ./instaclone/:/usr/src/instaclone/
+  #   ports:
+  #     - 8000:8000
+  #   environment:
+  #     - DEBUG=1
+  #     - SECRET_KEY=alpha
+  #     - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+  #     - POSTGRES_DB_NAME=instaclone_db
+  #     - POSTGRES_USER=app_user
+  #     - POSTGRES_PASSWORD=99DancingPips
+  #     - POSTGRES_HOST=db
+  #     - POSTGRES_PORT=5432
+  #     - REDIS_URL=redis://localhost:6379

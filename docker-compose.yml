@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  web:
+    build: ./instaclone
+    volumes:
+      - ./instaclone/:./data/
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=alpha
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - POSTGRES_DB_NAME=instaclone_db
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=99DancingPips
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - REDIS_URL=redis://localhost:6379
+  db:
+    image: postgres:13.0-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=99DancingPips
+      - POSTGRES_DB=instaclone_db
+  redis:
+      image: redis:latest
+      ports:
+        - 6379:6379
+  celery:
+      build: .
+      command: celery -A instaclone worker -l info
+      depends_on:
+        - db
+        - redis
+        - web
+
+volumes:
+  postgres_data:
