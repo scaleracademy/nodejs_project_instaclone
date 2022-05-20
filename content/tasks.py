@@ -10,7 +10,11 @@ def add(x, y):
 
 @app.task(name='process_media')
 def process_media(post_id):
-    pass
+    print("Inside process media")
+    return 1
 
+@app.task
+def make_media_versions(post_id):
+    print("Line 18")
 
 
