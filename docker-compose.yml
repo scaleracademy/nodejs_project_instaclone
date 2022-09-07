@@ -8,24 +8,24 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - ./.env
-  db:
+  db_service:
     image: postgres:14.3-alpine
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=app_user
-      - POSTGRES_PASSWORD=99DancingPips
+      - POSTGRES_PASSWORD=instaclone@123
       - POSTGRES_DB=instaclone_db
-  redis:
-      image: redis:latest
-      ports:
-        - 6379:6379
+  redis_service:
+    image: redis:latest
+    ports:
+      - 6379:6379
   celery:
-      image: i:v1
-      command: celery -A instaclone worker -l info
-      env_file:
-        - ./.env
-      depends_on:
-        - db
-        - redis
-        - web
+    image: i:v1
+    command: celery -A instaclone worker -l info
+    env_file:
+      - ./.env
+    depends_on:
+      - db_service
+      - redis_service
+      - web
